@@ -33,7 +33,7 @@ def populate():
         {"title":"Bottle", "views": 5,
          "url":"http://bottlepy.org/docs/dev/"},
         {"title":"Flask", "views": 10,
-         "url":"http://flask.poooo.org"} ]
+         "url":"http://flask.pocoo.org"} ]
 
     cats = {"Python": {"pages": python_pages, "views": 128, "likes": 64},
             "Django": {"pages": django_pages, "views": 64, "likes": 32},
