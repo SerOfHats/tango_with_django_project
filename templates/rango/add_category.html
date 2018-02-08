@@ -1,6 +1,8 @@
 {% extends 'rango/base.html' %}
 {% load staticfiles %}
 
+{% if user.is_authenticated %}
+
 {% block title_block %}
     <h1>Add a Category</h1>
 {% endblock %}
@@ -22,3 +24,5 @@
     </form>
     </div>
 {% endblock %}
+
+{% endif %}
