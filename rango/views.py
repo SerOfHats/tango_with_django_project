@@ -22,11 +22,6 @@ def index(request):
     views_list = Page.objects.order_by('-views')[:5]
     context_dict = {'categories': category_list, 'pages': views_list}
 
-    if request.session.get('visits'):
-        count = request.session.get('visits')
-    else:
-        count = 0
-
     # Call the helper function to handle the cookies
     visitor_cookie_handler(request)
     context_dict['visits'] = request.session['visits']
@@ -34,7 +29,7 @@ def index(request):
     # We make use of the shortcut function to make our lives easier.
     # Note that the first parameter is the template we wish to use.
     # Obtain our Response object early so we can add cookie information.
-    response = render(request, 'rango/index.html', {'visits': count}, context = context_dict)
+    response = render(request, 'rango/index.html', context_dict)
 
     # Return response back to the user, updating any cookies that need changing.
     return response
@@ -46,10 +41,7 @@ def about(request):
     # Construct a dictionary to pass to the template engine as its context.
     # Note the key boldmessage is the same as {{ boldmessage }} in the template!
     context_dict = {}
-    if request.session.get('visits'):
-        count = request.session.get('visits')
-    else:
-        count = 0
+
     # Call the helper function to handle the cookies
     visitor_cookie_handler(request)
     context_dict['visits'] = request.session['visits']
@@ -57,7 +49,7 @@ def about(request):
     # Return a rendered response to send to the client.
     # We make use of the shortcut function to make our lives easier.
     # Note that the first parameter is the template we wish to use.
-    response = render(request, 'rango/about.html', {'visits': count}, context = context_dict)
+    response = render(request, 'rango/about.html', context = context_dict)
     return response
 
 def show_category(request, category_name_slug):
